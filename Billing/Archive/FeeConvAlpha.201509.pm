@@ -1,0 +1,108 @@
+package FeeConvAlpha;
+
+our %feeMap = ( 
+	OLD => {
+		"TSX Debt/Notes Continuous"	=> { ACT => 0.0001 , PSV => -0.0001 } ,
+		"TSX High T1 CLOB Regular"	=> { ACT => 0.0018 , PSV => -0.0014 } ,
+		"TSX High T2 CLOB Regular"	=> { ACT => 0.0018 , PSV => -0.0014 } ,
+		"TSX High T1 CLOB Iceberg"	=> { PSV => -0.0014 } ,
+		"TSX High T2 CLOB Iceberg"	=> { PSV => -0.0014 } ,
+		"TSX High T1 ETF"			=> { ACT => 0.0018 , PSV => -0.0014 } ,
+		"TSX High T2 ETF"			=> { ACT => 0.0018 , PSV => -0.0014 } ,
+		"TSX High T1 ETF Iceberg"	=> { PSV => -0.0014 } ,
+		"TSX High T2 ETF Iceberg"	=> { PSV => -0.0014 } ,
+		"TSX Low CLOB Regular"		=> { ACT => 0.0003 , PSV => -0.0002 } , # happen to be the Low T1 and T2 fees
+		"TSX Low CLOB Iceberg"		=> { PSV => -0.0002 } , 				# happen to be the Low T1 and T2 fees
+		"TSX High T1 Odd lot Dealer"	=> { ACT => 0.0014 , PSV => -0.0014 } ,
+		"TSX High T2 Odd lot Dealer"	=> { ACT => 0.0014 , PSV => -0.0014 } ,
+		"TSX Low T1 Oddlot Dealer"	=> { ACT => 0.0002 , PSV => -0.0002 } ,
+		"TSX Low T2 Oddlot Dealer"	=> { ACT => 0.0002 , PSV => -0.0002 } ,
+		"TSX High T1 ETF Odd lot Dealer"	=> { ACT => 0.0014 , PSV => -0.0014 } ,
+		"TSX High T2 ETF Odd lot Dealer"	=> { ACT => 0.0014 , PSV => -0.0014 } ,
+		"TSXV High T1 CLOB Regular"	=> { ACT => 0.0018 , PSV => -0.0014 } ,
+		"TSXV High T2 CLOB Regular"	=> { ACT => 0.0018 , PSV => -0.0014 } ,
+		"TSXV High T1 CLOB Iceberg"	=> { PSV => -0.0014 } ,
+		"TSXV High T2 CLOB Iceberg"	=> { PSV => -0.0014 } ,
+		"TSXV Low CLOB Regular"		=> { ACT => 0.0003 , PSV => -0.0002 } , # happen to be the Low T1 and T2 fees
+		"TSXV Low CLOB Iceberg"		=> { PSV => -0.0002 } ,					# happen to be the Low T1 and T2 fees
+		"TSXV High T1 Odd lot Dealer"	=> { ACT => 0.0014 , PSV => -0.0014 } ,
+		"TSXV High T2 Odd lot Dealer"	=> { ACT => 0.0014 , PSV => -0.0014 } ,
+		"TSXV Low T1 AOD Oddlot"	=> { ACT => 0.0002 , PSV => -0.0002 } ,
+		"TSXV Low T2 AOD Oddlot"	=> { ACT => 0.0002 , PSV => -0.0002 } ,
+	} , 
+	NEW => {
+		"TSX Debt/Notes Continuous"	=> { ACT => 0.0001 , PSV => -0.0001 } ,
+		"TSX High T1 CLOB Regular"	=> { ACT => -0.0010 , PSV => 0.0010 } ,
+		"TSX High T2 CLOB Regular"	=> { ACT => -0.0010 , PSV => 0.0010 } ,
+		"TSX High T1 CLOB Iceberg"	=> { PSV => 0.0010 } ,
+		"TSX High T2 CLOB Iceberg"	=> { PSV => 0.0010 } ,
+		"TSX High T1 ETF"			=> { ACT => -0.0010 , PSV => 0.0010 } ,
+		"TSX High T2 ETF"			=> { ACT => -0.0010 , PSV => 0.0010 } ,
+		"TSX High T1 ETF Iceberg"	=> { PSV => 0.0010 } ,
+		"TSX High T2 ETF Iceberg"	=> { PSV => 0.0010 } ,
+		"TSX Low CLOB Regular"		=> { ACT => -0.0006 , PSV => 0.0006 } ,
+		"TSX Low CLOB Iceberg"		=> { ACT => -0.0006 , PSV => 0.0006 } ,
+		"TSX High T1 Odd lot Dealer"	=> { ACT => -0.0010 , PSV => 0.0010 } ,
+		"TSX High T2 Odd lot Dealer"	=> { ACT => -0.0010 , PSV => 0.0010 } ,
+		"TSX Low Oddlot Dealer"		=> { ACT => -0.0006 , PSV => 0.0006 } ,
+		"TSX High T1 ETF Odd lot Dealer"	=> { ACT => -0.0010 , PSV => 0.0010 } ,
+		"TSX High T2 ETF Odd lot Dealer"	=> { ACT => -0.0010 , PSV => 0.0010 } ,
+		"TSX High T1 Oddlot Dealer Autofill"	=> { PSV => 0.0000 } ,
+		"TSX High T2 Oddlot Dealer Autofill"	=> { PSV => 0.0000 } ,
+		"TSX Low Oddlot Dealer Autofill"	=> { PSV => 0.0000 } ,
+		"TSX High T1 ETF Oddlot Dealer Autofill"	=> { PSV => 0.0000 } ,
+		"TSX High T2 ETF Oddlot Dealer Autofill"	=> { PSV => 0.0000 } ,
+		"TSXV High T1 CLOB Regular"	=> { ACT => -0.0010 , PSV => 0.0010 } ,
+		"TSXV High T2 CLOB Regular"	=> { ACT => -0.0010 , PSV => 0.0010 } ,
+		"TSXV High T1 CLOB Iceberg"	=> { PSV => 0.0010 } ,
+		"TSXV High T2 CLOB Iceberg"	=> { PSV => 0.0010 } ,
+		"TSXV Low CLOB Regular"		=> { ACT => -0.0005 , PSV => 0.0006 } , # TEMPORARY : ACT should be -0.0006
+		"TSXV Low CLOB Iceberg"		=> { PSV => 0.0006 } ,
+		"TSXV High T1 Oddlot Dealer Autofill"	=> { PSV => 0.0000 } ,
+		"TSXV High T2 Oddlot Dealer Autofill"	=> { PSV => 0.0000 } ,
+		"TSXV Low Oddlot Dealer Autofill"	=> { PSV => 0.0000 } ,		
+	}
+);
+	
+our %collapseMap = (
+	OLD => {
+		"TSX Debt/Notes Continuous"	=> [ "TSX Debt/Notes SDL TO DARK" ] ,
+		"TSX High T1 CLOB Regular"	=> [ "TSX High T1 SDL TO DARK" ] ,
+		"TSX High T2 CLOB Regular"	=> [ "TSX High T2 SDL TO DARK" ] ,
+		"TSX High T1 ETF"			=> [ "TSX High T1 ETF SDL TO DARK" ] ,
+		"TSX High T2 ETF"			=> [ "TSX High T2 ETF SDL TO DARK" ] ,
+		"TSX Low CLOB Regular"		=> [ "TSX Low T1 CLOB Regular" , "TSX Low T2 CLOB Regular" , "TSX Low T1 SDL TO DARK" , "TSX Low T2 SDL TO DARK" ] ,
+		"TSX Low CLOB Iceberg"		=> [ "TSX Low T1 CLOB Iceberg" , "TSX Low T2 CLOB Iceberg" ] ,
+		"TSX High T1 Oddlot Dealer Autofill"		=> { PSV => [ "TSX High T1 Odd lot Dealer" ] } ,
+		"TSX High T2 Oddlot Dealer Autofill"		=> { PSV => [ "TSX High T2 Odd lot Dealer" ] } ,
+		"TSX Low Oddlot Dealer Autofill"			=> { PSV => [ "TSX Low T1 Oddlot Dealer" , "TSX Low T2 Oddlot Dealer" => "PSV" ] } ,
+		"TSX High T1 ETF Oddlot Dealer Autofill"	=> { PSV => [ "TSX High T1 ETF Odd lot Dealer" ] } ,
+		"TSX High T2 ETF Oddlot Dealer Autofill"	=> { PSV => [ "TSX High T2 ETF Odd lot Dealer" ] } ,
+		"TSXV High T1 CLOB Regular"	=> [ "TSXV High T1 SDL TO DARK" , "NEX High T1 Boardlot" ] ,
+		"TSXV High T2 CLOB Regular"	=> [ "TSXV High T2 SDL TO DARK" , "NEX High T2 Boardlot" ] ,
+		"TSXV Low CLOB Regular"		=> [ "TSXV Low T1 CLOB Regular" , "TSXV Low T2 CLOB Regular" , "TSXV Low T1 SDL TO DARK" , "TSXV Low T2 SDL TO DARK" , 
+										"NEX Low T1 Boardlot" , "NEX Low T2 Boardlot" ] ,
+		"TSXV Low CLOB Iceberg"		=> [ "TSXV Low T1 CLOB Iceberg" , "TSXV Low T2 CLOB Iceberg" ] ,
+		"TSXV High T1 Oddlot Dealer Autofill"		=> { PSV => [ "TSXV High T1 Odd lot Dealer" ] } ,
+		"TSXV High T2 Oddlot Dealer Autofill"		=> { PSV => [ "TSXV High T2 Odd lot Dealer" ] } ,
+		"TSXV Low Oddlot Dealer Autofill"			=> { PSV => [ "TSXV Low T1 AOD Oddlot" , "TSXV Low T2 AOD Oddlot" ] } ,
+	} ,
+	NEW => {
+		"TSX High T1 CLOB Regular"	=> [ "TSX High T1 CLOB Regular Post-Only" ] ,
+		"TSX High T2 CLOB Regular"	=> [ "TSX High T2 CLOB Regular Post-Only" ] ,
+		"TSX Low CLOB Regular"		=> [ "TSX Low CLOB Regular Post-Only" ] ,
+		"TSX High T1 ETF"			=> [ "TSX High T1 ETF Post-Only" ] ,
+		"TSX High T2 ETF"			=> [ "TSX High T2 ETF Post-Only" ] ,
+		"TSX High T1 CLOB Iceberg"	=> [ "TSX High T1 CLOB Iceberg Post-Only" ] ,
+		"TSX High T2 CLOB Iceberg"	=> [ "TSX High T2 CLOB Iceberg Post-Only" ] ,
+		"TSX Low CLOB Iceberg"		=> [ "TSX Low CLOB Iceberg Post-Only" ] ,
+		"TSXV High T1 CLOB Regular"	=> [ "TSXV High T1 CLOB Regular Post-Only" ] ,
+		"TSXV High T2 CLOB Regular"	=> [ "TSXV High T2 CLOB Regular Post-Only" ] ,
+		"TSXV High T1 CLOB Iceberg"	=> [ "TSXV High T1 CLOB Iceberg Post-Only" ] ,
+		"TSXV High T2 CLOB Iceberg"	=> [ "TSXV High T2 CLOB Iceberg Post-Only" ] ,
+		"TSXV Low CLOB Regular"		=> [ "TSXV Low CLOB Regular Post-Only" ] ,
+		"TSXV Low CLOB Iceberg"		=> [ "TSXV Low CLOB Iceberg Post-Only" ] ,
+	}
+);
+
+1;
