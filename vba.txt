@@ -1,0 +1,11 @@
+Sub xyz()
+
+    With ActiveWorksheet
+        For Row = 2 To 3300
+            If (Range("E" & Row) <> "" And Range("F" & Row) <> "") Then
+                Range("D" & Row, "F" & Row).Interior.Color = 10092543
+            End If
+        Next
+    End With
+        
+End Sub
