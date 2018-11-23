@@ -1,0 +1,48 @@
+Select 
+	abq.SubProduct, 
+	Sum(abq.Normalized_Volume) , 
+	Sum(abq.Net_Fee) 
+from 
+	trades_maintenance.fact_alpha_billing_quantum abq
+where 
+	abq.Trade_Month = '2013-08-01' and 
+	abq.Broker_Code = 7
+group by 
+	abq.SubProduct
+
+Select
+	abq.TraderID, 
+	abq.SubProduct, 
+	Sum(abq.Normalized_Volume) , 
+	Sum(abq.Net_Fee) 
+from 
+	trades_maintenance.fact_alpha_billing_quantum abq
+where 
+	abq.Trade_Month = '2013-07-01' and 
+	abq.Broker_Code = 7 and 
+	abq.TraderID in ( 'TD744IT' , 'TD580IT' , 'TD759IR' , 'TD956IR' )
+group by 
+	abq.TraderID ,
+	abq.SubProduct
+
+Select
+	Sum(Normalized_Volume)/2
+From
+	trades_maintenance.fact_alpha_billing_quantum
+where
+	Trade_Month = '2013-09-01'
+	
+Select
+	ds.SubProduct_Group Product ,
+	Sum(abq.Normalized_Volume) ,
+	Sum(abq.Net_Fee)
+from
+	trades_maintenance.fact_alpha_billing_quantum abq ,
+	trades.dimension_subproduct ds
+where
+	abq.Trade_Month = '2013-07-01' and
+	abq.Broker_Code = 7 and
+	abq.TraderID in ( 'TD744IT' , 'TD580IT' , 'TD759IR' , 'TD956IR' ) and
+	abq.SubProduct = ds.SubProduct 
+group by
+	ds.SubProduct_Group
